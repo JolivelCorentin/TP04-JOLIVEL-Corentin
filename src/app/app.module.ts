@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CompteClientComponent } from './compte-client/compte-client.component';
+import { NgxsModule } from '@ngxs/store';
+import { PanierState } from '../shared/states/panier-state';
 
 const appRoutes : Routes = [
   {path:'',component:AccueilComponent},
@@ -30,6 +32,7 @@ const appRoutes : Routes = [
   imports: [
     BrowserModule,FormsModule,HttpClientModule,
     RouterModule.forRoot (appRoutes),
+    NgxsModule.forRoot ([PanierState])
   ],
   providers: [],
   bootstrap: [AppComponent]
