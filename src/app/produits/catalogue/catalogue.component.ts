@@ -6,6 +6,7 @@ import { from, Observable } from "rxjs";
 import { environment } from '../../../environments/environment';
 import { Store } from '@ngxs/store';
 import {AddReference} from '../../../shared/actions/panier.action';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {AddReference} from '../../../shared/actions/panier.action';
 })
 export class CatalogueComponent implements OnInit {
 
-    produits$ : any = this.getProduits();
+  produits$ : any = this.getProduits();
 
   ngOnInit(): void {
   
@@ -23,7 +24,7 @@ export class CatalogueComponent implements OnInit {
 
   data : string [];
 
-  constructor(private httpClient : HttpClient, private store : Store) { 
+  constructor(private httpClient : HttpClient, private store : Store, private router : Router) { 
     this.data = new Array<string> ();  
   }
   public getProduits () : Observable<any> {
@@ -33,8 +34,12 @@ export class CatalogueComponent implements OnInit {
 
   addPanier (ref : string) {
     console.log (ref);
+    this.store.dispatch (new AddReference ({"reference":ref}));
+  }
+
+  voirDetails(tel: string){
+    this.router.navigate(["/produits/detail-produit", tel]);
     
-    //this.store.dispatch (new AddReference ({"reference":ref}));
   }
 
 
