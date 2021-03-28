@@ -13,12 +13,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { CompteClientComponent } from './compte-client/compte-client.component';
 import { NgxsModule } from '@ngxs/store';
 import { PanierState } from '../shared/states/panier-state';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes : Routes = [
   {path:'',component:AccueilComponent},
   {path:'formulaire',component:FormulaireComponent},
   {path:'compte-client',component:CompteClientComponent},
-  {path:'produits', loadChildren: () => import('./produits/produits.module').then(m => m.ProduitsModule)}
+  {path:'produits', canActivate:[AuthGuard], loadChildren: () => import('./produits/produits.module').then(m => m.ProduitsModule)}
 ]
 
 @NgModule({

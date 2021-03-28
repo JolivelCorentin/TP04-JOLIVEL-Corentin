@@ -18,8 +18,10 @@ export class CatalogueComponent implements OnInit {
 
   produits$ : any = this.getProduits();
 
+
   ngOnInit(): void {
-  
+
+
   }
 
   data : string [];
